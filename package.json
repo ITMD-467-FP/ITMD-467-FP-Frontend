@@ -1,0 +1,19 @@
+{
+  "name": "itmd-467-fp-frontend",
+  "version": "1.0.0",
+  "description": "ITMD-467 final project front end. Spring 2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ITMD-467-FP/ITMD-467-FP-Frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ITMD-467-FP/ITMD-467-FP-Frontend/issues"
+  },
+  "homepage": "https://github.com/ITMD-467-FP/ITMD-467-FP-Frontend#readme"
+}
