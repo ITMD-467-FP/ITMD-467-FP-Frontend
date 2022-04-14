@@ -56,3 +56,19 @@
   cursor: pointer;
 }
 
+.form button:hover,.form button:active{
+  background: #43A047;
+}
+
+.form .message{
+  margin: 15px 0 0;
+  color: black;
+  font-size: 15px;
+}
+
+
+
+.form .register-form{
+  display: none;
+}
+
