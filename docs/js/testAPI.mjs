@@ -5,10 +5,10 @@ import API from './API.mjs'
 
 var api = new API();
 
-const output = await
 
 //Immediately-invoked anonymous async function
 (async () => {
 	const output = await api.basicFetchExample("https://mysafeinfo.com/api/data?list=englishmonarchs&format=json");
     console.log(output);
 })();
+
