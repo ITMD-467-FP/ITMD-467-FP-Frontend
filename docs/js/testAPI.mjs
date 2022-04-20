@@ -12,7 +12,9 @@ var api = new API();
     //console.log(output);
 
     const userData = await api.userLogin("dtiberi@hawk.iit.edu", "hunter123");
-
     console.log(userData);
+
+    const sources = await api.getAllSources(userData.id);
+    console.log(sources[0]);
 })();
 
