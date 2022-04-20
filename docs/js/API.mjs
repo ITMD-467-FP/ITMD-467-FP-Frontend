@@ -58,5 +58,32 @@ export default class API {
         });
     }
 
-    
+    /**
+     * Calls the getAllSources request. Promise rejected if user is not logged in. 
+     * @param {*} userId 
+     * @returns Json array of source entries.
+     */
+    async getAllSources(userId) {
+        if (typeof userId === 'string' || userId instanceof String){
+            userId = parseInt(userId);
+        }
+        return new Promise((resolve, reject) => {
+            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) {//If not logged in
+                reject();
+            } else {
+                fetch(this.cloudUrl + `/getAllSources?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token,  //Authentication 
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data);
+                    });
+            }
+        });
+    }
 }
