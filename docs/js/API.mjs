@@ -1,8 +1,6 @@
 export default class API {
 
-    constructor() {
-        this.requestTimeout = 3000; //ms
-    }
+    constructor() {}
 
     /**
      * Example function for an async fetch request to a given url.
@@ -11,11 +9,9 @@ export default class API {
      */
     async basicFetchExample(url) {
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => resolve(data));
-            }, this.requestTimeout);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => resolve(data));
         });
     }
 }
