@@ -86,4 +86,49 @@ export default class API {
             }
         });
     }
+
+    /**
+     * Uses FormData API
+     * @param {*} event 
+     */
+    async handleSubmit(event) {
+        event.preventDefault();
+      
+        const data = new FormData(event.target);
+      
+        /*return a plain Javascript Object which is compatible with JSON.stringify*/
+        const value = Object.fromEntries(data.entries());
+      
+        console.log({ value });
+      }
+
+
+      async addSource(userId) {
+        if (typeof userId === 'string' || userId instanceof String){
+            userId = parseInt(userId);
+        }
+        
+        const data = { username: 'Rey' };
+
+        return new Promise((resolve, reject) => {
+            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) {//If not logged in
+                reject();
+            } else {
+                fetch(this.cloudUrl + 'addSource', {
+                        method: 'POST',
+                        headers: {
+                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token,  //Authentication 
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data);
+                    });
+            }
+        });
+    }
+
 }
