@@ -15,20 +15,21 @@
           </h1>
       </div>
       <div class="ascontainer1">
-          <form class="formfields">
-              <label for "url">Url:</label>
-              <input type="text" id="=url" name="url">
+          <form class="formfields" id="formula">
               <label for "label">Label:</label>
-              <input type="text" id="=label" name="label">
+              <input placeholder="name" type="text" id="=label" name="label">
+              <label for "url">Url:</label>
+              <input type="url" id="=url" name="url">
           </form>
       </div>
 
       <div class="ascontainer2">
-        <button type="button">
+        <button type="submit" form="formula">
             Test
         </button>
-        <button type="button">
+        <button type="submit">
             Save
         </button>
       </div>
   </body>
+  <script type="module" src="./js/testAPI.mjs"></script>
