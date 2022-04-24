@@ -42,15 +42,21 @@ export default class API {
      * @param {*} password 
      */
     async userLogin(email, password) {
+        //console.log("userLogin");
+        //console.log(this.cloudUrl + `/userLogin?email=${email}&password=${password}`);
         return new Promise((resolve, reject) => {
             fetch(this.cloudUrl + `/userLogin?email=${email}&password=${password}`)
                 .then(response => response.json())
                 .then(data => {
+                    //console.log(data);
                     if (data.hasOwnProperty('error')) //Invalid login.
                     {
-                        console.log(data.error);
+                        //console.log("userLogin: Login Failed");
+                        reject();
+                        //console.log(data.error);
                         return false;
                     } else {
+                        //console.log("userLogin: Login Success");
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         resolve(data);
                     }
