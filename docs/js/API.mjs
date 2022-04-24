@@ -79,6 +79,7 @@ export default class API {
             } else {
                 fetch(this.cloudUrl + `/getAllSources?userId=${userId}`, {
                         method: 'GET',
+                        Accept: 'application/json',
                         headers: {
                             [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
                             'Accept': 'application/json',
@@ -124,6 +125,41 @@ export default class API {
                     })
                     .then(response => response.json())
                     .then(data => {
+                        resolve(data);
+                    });
+            }
+        });
+    }
+
+    /**
+     * Calls findTrends on the given userId.
+     * @param {*} userId 
+     * @returns JSON array of trends.
+     */
+    async findTrends(userId) {
+        console.log("findTrends")
+        if (typeof userId === 'string' || userId instanceof String) {
+            userId = parseInt(userId);
+        }
+
+        return new Promise((resolve, reject) => {
+            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) { //If not logged in
+                console.log("findTrends: rejected")
+                reject();
+            } else {
+                //console.log("findTrends: fetching from")
+                //console.log(this.cloudUrl + `/findTrends?userId=${userId}`);
+                fetch(this.cloudUrl + `/findTrends?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        //console.log(data);
                         resolve(data);
                     });
             }
