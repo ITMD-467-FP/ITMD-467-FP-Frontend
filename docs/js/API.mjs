@@ -91,18 +91,15 @@ export default class API {
      * Uses FormData API
      * @param {*} event 
      */
-    async handleSubmit(event) {
-        event.preventDefault();
-      
-        const data = new FormData(event.target);
-      
-        /*return a plain Javascript Object which is compatible with JSON.stringify*/
-        const value = Object.fromEntries(data.entries());
-      
-        console.log({ value });
-      }
 
-
+    
+      /**
+       * This one does not work yet, I can't get post requests to work even on postman
+       * but, what would end up happening is we use handleSubmit()'s output as input for
+       * addSource below
+       * @param {*} userId 
+       * @returns 
+       */
       async addSource(userId) {
         if (typeof userId === 'string' || userId instanceof String){
             userId = parseInt(userId);

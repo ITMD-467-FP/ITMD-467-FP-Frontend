@@ -17,16 +17,7 @@ var api = new API();
     const sources = await api.getAllSources(userData.id);
     console.log(sources[0]);
     console.log("CheckpointA");
-      
-    const form = document.querySelector('form');
-    form.addEventListener('submit', api.handleSubmit);
-
-    console.log("CheckpointB");
-
-    //** 
-    //const add = await api.addSource(userData.id);
-    //console.log(add);
-    
+        
     console.log("CheckpointC")
 
 })();
