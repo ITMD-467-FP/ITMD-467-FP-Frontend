@@ -42,15 +42,21 @@ export default class API {
      * @param {*} password 
      */
     async userLogin(email, password) {
+        //console.log("userLogin");
+        //console.log(this.cloudUrl + `/userLogin?email=${email}&password=${password}`);
         return new Promise((resolve, reject) => {
             fetch(this.cloudUrl + `/userLogin?email=${email}&password=${password}`)
                 .then(response => response.json())
                 .then(data => {
+                    //console.log(data);
                     if (data.hasOwnProperty('error')) //Invalid login.
                     {
-                        console.log(data.error);
+                        //console.log("userLogin: Login Failed");
+                        reject();
+                        //console.log(data.error);
                         return false;
                     } else {
+                        // console.log("userLogin: Login Success");
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         resolve(data);
                     }
@@ -64,17 +70,17 @@ export default class API {
      * @returns Json array of source entries.
      */
     async getAllSources(userId) {
-        if (typeof userId === 'string' || userId instanceof String){
+        if (typeof userId === 'string' || userId instanceof String) {
             userId = parseInt(userId);
         }
         return new Promise((resolve, reject) => {
-            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) {//If not logged in
+            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) { //If not logged in
                 reject();
             } else {
                 fetch(this.cloudUrl + `/getAllSources?userId=${userId}`, {
                         method: 'GET',
                         headers: {
-                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token,  //Authentication 
+                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
@@ -88,40 +94,33 @@ export default class API {
     }
 
     /**
-     * Uses FormData API
-     * @param {*} event 
+     * Adds a source to the given user.
+     * @param {*} userId 
+     * @param {*} url Url of the new source
+     * @returns New source id and url.
      */
-    async handleSubmit(event) {
-        event.preventDefault();
-      
-        const data = new FormData(event.target);
-      
-        /*return a plain Javascript Object which is compatible with JSON.stringify*/
-        const value = Object.fromEntries(data.entries());
-      
-        console.log({ value });
-      }
-
-
-      async addSource(userId) {
-        if (typeof userId === 'string' || userId instanceof String){
+    async addSource(userId, url) {
+        if (typeof userId === 'string' || userId instanceof String) {
             userId = parseInt(userId);
         }
-        
-        const data = { username: 'Rey' };
+
+        const body = {
+            userId: userId,
+            sourceUrl: url
+        };
 
         return new Promise((resolve, reject) => {
-            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) {//If not logged in
+            if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) { //If not logged in
                 reject();
             } else {
-                fetch(this.cloudUrl + 'addSource', {
+                fetch(this.cloudUrl + '/addSource', {
                         method: 'POST',
                         headers: {
-                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token,  //Authentication 
+                            [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(data),
+                        body: JSON.stringify(body),
                     })
                     .then(response => response.json())
                     .then(data => {
