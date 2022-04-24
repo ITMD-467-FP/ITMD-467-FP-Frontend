@@ -56,7 +56,7 @@ export default class API {
                         //console.log(data.error);
                         return false;
                     } else {
-                        //console.log("userLogin: Login Success");
+                        // console.log("userLogin: Login Success");
                         sessionStorage.setItem('userData', JSON.stringify(data));
                         resolve(data);
                     }
@@ -93,27 +93,34 @@ export default class API {
         });
     }
 
-    async addSource(userId) {
+    /**
+     * Adds a source to the given user.
+     * @param {*} userId 
+     * @param {*} url Url of the new source
+     * @returns New source id and url.
+     */
+    async addSource(userId, url) {
         if (typeof userId === 'string' || userId instanceof String) {
             userId = parseInt(userId);
         }
 
-        const data = {
-            username: 'Rey'
+        const body = {
+            userId: userId,
+            sourceUrl: url
         };
 
         return new Promise((resolve, reject) => {
             if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) { //If not logged in
                 reject();
             } else {
-                fetch(this.cloudUrl + 'addSource', {
+                fetch(this.cloudUrl + '/addSource', {
                         method: 'POST',
                         headers: {
                             [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(data),
+                        body: JSON.stringify(body),
                     })
                     .then(response => response.json())
                     .then(data => {
