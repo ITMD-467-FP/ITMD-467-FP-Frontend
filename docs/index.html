@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
-      <script type="module" src="./js/testAPI.mjs"></script>
+      <script type="module" src="./js/login.mjs"></script>
       <div class="wrapper">
          <div class="title-text">
             <div class="title login">
@@ -27,12 +27,12 @@
                <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-               <form action="home.html" class="login">
+               <form class="login" id="login_form">
                   <div class="field">
-                     <input type="text" placeholder="Email Address" required>
+                     <input type="text" placeholder="Email Address" id="login_email_field" required>
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Password" required>
+                     <input type="password" placeholder="Password" id="login_password_field" required>
                   </div>
                   <div class="field btn">
                      <div class="btn-layer"></div>
