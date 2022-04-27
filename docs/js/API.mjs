@@ -137,14 +137,14 @@ export default class API {
      * @returns JSON array of trends.
      */
     async findTrends(userId) {
-        console.log("findTrends")
+        //console.log("findTrends")
         if (typeof userId === 'string' || userId instanceof String) {
             userId = parseInt(userId);
         }
 
         return new Promise((resolve, reject) => {
             if (typeof (sessionStorage.getItem("userData")) == 'undefined' || sessionStorage.getItem("userData") == null) { //If not logged in
-                console.log("findTrends: rejected")
+                //console.log("findTrends: rejected")
                 reject();
             } else {
                 //console.log("findTrends: fetching from")
@@ -157,7 +157,10 @@ export default class API {
                             'Content-Type': 'application/json'
                         },
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        //console.log(response);
+                        return response.json();
+                    })
                     .then(data => {
                         //console.log(data);
                         resolve(data);
@@ -165,5 +168,4 @@ export default class API {
             }
         });
     }
-
 }
