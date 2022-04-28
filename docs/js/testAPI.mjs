@@ -17,6 +17,12 @@ var api = new API();
     const sources = await api.getAllSources(userData.id);
     console.log(sources[0]);
     console.log("CheckpointA");
+
+    console.log(userData.id);
+    const search = await api.findTrends(userData.id);
+    console.log(search); 
+    console.log("CheckpointB")
+
         
     console.log("CheckpointC")
 
