@@ -2,7 +2,21 @@ import API from './API.mjs'
 
 var api = new API();
 
-function beginTrendLoad(){
+const apiUrl = 'https://itmd-467-fp-web-app-express.azurewebsites.net';
+async function beginTrendLoad(){
+    try{
+    const response = await fetch(`${apiUrl}/findTrends?userId=42`);
+    if(!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.status}`);
+    }
+    return response.json();
+}
+    catch(e) {
+    console.log(e);
+}
+
+
+
     /*
     - Grab trendsHold
     - Call findTrends in api.
