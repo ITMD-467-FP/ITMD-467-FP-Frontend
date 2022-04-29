@@ -25,6 +25,5 @@ function beginTrendLoad(){
     console.log('end');
 }
 
-beginTrendLoad();
 
 console.log("CheckpointC")
