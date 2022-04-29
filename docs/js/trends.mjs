@@ -23,41 +23,21 @@ async function beginTrendLoad(){
     - Create html element for each trend.
     - Add those elements to trendsHold.
     */
+
+    const newEl = document.createElement("newEl");
+    newEl.classList.add("trends");
+    newEl.textContent = ("Hi");
+
+    console.log('mid');
+
+    const trendsContainer = document.getElementById("trendsHold");
+
+    trendsContainer.appendChild(newEl);
+
+    console.log(newEl.getAttribute("class"));
+
+    console.log('end');
 }
 
-function listPosts(postContainerElementId) {
-const postContainerElement = document.getElementById
-(postContainerElementId);
 
-if(!postContainerElement){
-    return;
-}
-
-beginTrendLoad()
-.then((posts) => {
-if (!posts) {
-    postContainerElement.ineerHTML = 'No posts';
-    return;
-
-}
-for (const trends of posts) {
-    postContainerElement.appendChild(postElement(post));
-}
-})
-
-.catch((e) => {
-    console.log(e);
-});
-
-}
-
-function postElement(trends){
-    const anchorElement = document.createElement('a');
-    anchorElement.setAttribute('href', `${apiUrl}/findTrends?userId=42/${trends.id}`);
-    anchorElement.setAttribute('target', '_blank.');
-
-    const ostTitleElement = document.createElement('h3');
-    postTitleElement.appendChild(anchorElement);
-
-    return postTitleElement;
-}
+console.log("CheckpointC")

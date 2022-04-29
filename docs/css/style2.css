@@ -73,3 +73,11 @@ body{
   justify-content: center;
   padding-bottom: 30px; 
 }
+
+#homeheader{
+  padding: 60px;
+  text-align: center;
+  background: #14abc9;
+  color: white;
+  font-size: 30px;
+}
