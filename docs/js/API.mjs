@@ -168,4 +168,34 @@ export default class API {
             }
         });
     }
+
+    /**
+     * Creates a new user in the database.
+     * Returns user data.
+     * @param {*} email 
+     * @param {*} password 
+     */
+    async newUser(email, password, fname, lname) {
+        var data = {
+            email: email,
+            password: password,
+            fname: fname,
+            lname: lname
+        }
+        return new Promise((resolve, reject) => {
+            fetch(this.cloudUrl + `/newUser`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    sessionStorage.setItem('userData', JSON.stringify(data));
+                    resolve(data);
+                });
+        });
+    }
 }
