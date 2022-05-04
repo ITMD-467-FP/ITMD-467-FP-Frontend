@@ -11,10 +11,10 @@ var api = new API();
 	//const output = await api.basicFetchExample("https://mysafeinfo.com/api/data?list=englishmonarchs&format=json");
     //console.log(output);
 
-    const userData = await api.userLogin("dtiberi@hawk.iit.edu", "hunter123");
+    const userData = await api.userLogin("rey3@gmail.com", "secure");
     console.log(userData);
 
-    const sources = await api.getAllSources(userData.id);
+    const sources = await api.getAllSources(output.id);
     console.log(sources[0]);
     console.log("CheckpointA");
 
@@ -29,7 +29,7 @@ var api = new API();
     console.log("CheckpointC");
 
 
-    for (let i = 0; i < 20; i ++){
+    for (let i = 0; i < 30; i ++){
 
         if(isNaN(Object.keys(search)[i])){
             
@@ -58,7 +58,5 @@ var api = new API();
         }
     }
     
-
-
 })();
 
