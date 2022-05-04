@@ -17,17 +17,48 @@ var api = new API();
     const sources = await api.getAllSources(userData.id);
     console.log(sources[0]);
     console.log("CheckpointA");
-      
-    const form = document.querySelector('form');
-    form.addEventListener('submit', api.handleSubmit);
 
-    console.log("CheckpointB");
+    console.log(userData.id);
+    const search = await api.findTrends(userData.id);
+    console.log(search); 
+    console.log("CheckpointB")
 
-    //** 
-    //const add = await api.addSource(userData.id);
-    //console.log(add);
+
+
+
+    console.log("CheckpointC");
+
+
+    for (let i = 0; i < 20; i ++){
+
+        if(isNaN(Object.keys(search)[i])){
+            
+            let kei = String(Object.keys(search)[i]);
+            console.log("Key: " + kei);
+
+            let count = search[kei].count;
+            console.log("Count: " + count);
+
+            let url = search[kei].sources;
+            console.log("Urls: " + url);
+
+            const el = document.createElement("element");
+            el.classList.add("trends");
+            el.textContent = ("Term: " + "\'" + String(kei) + "\' " +  " ," + " Count: " + count 
+            + " , " + " URLS: " + url);
+
+            console.log(el.getAttribute("class"));
+
+            const holder = document.getElementById("trendsHold");
+
+            holder.appendChild(el);
+        }
+        else {
+
+        }
+    }
     
-    console.log("CheckpointC")
+
 
 })();
 
