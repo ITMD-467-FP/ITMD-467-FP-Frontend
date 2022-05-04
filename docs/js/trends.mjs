@@ -26,6 +26,7 @@ var api = new API();
     console.log("CheckpointC");
 
 
+
     for (let i = 0; i < 30; i ++){
 
         if(isNaN(Object.keys(search)[i])){
