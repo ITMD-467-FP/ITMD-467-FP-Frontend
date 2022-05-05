@@ -14,7 +14,7 @@ var api = new API();
     const userData = await api.userLogin("rey3@gmail.com", "secure");
     console.log(userData);
 
-    const sources = await api.getAllSources(output.id);
+    const sources = await api.getAllSources(userData.id);
     console.log(sources[0]);
     console.log("CheckpointA");
 
