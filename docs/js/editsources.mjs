@@ -30,9 +30,10 @@ var api = new API();
 
         let btn = document.createElement("button")
         btn.innerHTML = "Delete"
+        let sourceID = sources[kei].id
+        let userID = jsonUserData.id
+
         btn.onclick = function () {
-            let sourceID = sources[kei].id
-            let userID = jsonUserData.id
             console.log("Source ID: " + sourceID);
             console.log("User ID: " + userID);
         };
