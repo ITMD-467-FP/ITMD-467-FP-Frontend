@@ -24,7 +24,7 @@ var api = new API();
 
         const el = document.createElement("element");
         el.classList.add("container2");
-        el.textContent = (parseInt([i] + 1) + " " + url + "")
+        el.textContent = (parseInt([i]) + 1 + " " + url + "")
 
         const holder = document.getElementById("sourcesHold");
 
