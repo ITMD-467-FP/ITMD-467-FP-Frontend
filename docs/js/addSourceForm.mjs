@@ -13,14 +13,15 @@ addSourceForm.addEventListener('submit', event => {
         window.alert("Empty input, try again")
         window.location.href = 'addsource.html';
     }
-    
-    var userId = JSON.parse(sessionStorage.getItem('userData')).id;
+    else{
+        var userId = JSON.parse(sessionStorage.getItem('userData')).id;
     
     //Immediately-invoked anonymous async function
-    (async () => {
-        const output = await api.addSource(userId, url);
-        //console.log(output);
-        window.location.href = 'home.html';
+        (async () => {
+            const output = await api.addSource(userId, url);
+            //console.log(output);
+            window.location.href = 'home.html';
     })();
+    }    
 });
 
