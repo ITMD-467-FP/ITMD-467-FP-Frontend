@@ -198,4 +198,32 @@ export default class API {
                 });
         });
     }
+
+    /**
+     * Calls API request to delete a source from a user's account.
+     * @param {*} sourceId 
+     * @param {*} userId 
+     * @returns Raw mssql output. If you wanted to use this, you could check rows affected to confirm it was removed. 
+     */
+    async removeSource(sourceId, userId){
+        var data = {
+            userId: userId,
+            sourceId: sourceId,
+        }
+        return new Promise((resolve, reject) => {
+            fetch(this.cloudUrl + `/removeSource`, {
+                    method: 'DELETE',
+                    headers: {
+                        [userId]: JSON.parse(sessionStorage.getItem('userData')).current_secret_token, //Authentication 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data);
+                });
+        });
+    }
 }
