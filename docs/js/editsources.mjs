@@ -16,7 +16,7 @@ var api = new API();
 
     for (let i = 0; i < Object.keys(sources).length; i ++)
     {
-        let kei = String(Object.keys(sources)[i])
+        var kei = String(Object.keys(sources)[i])
         console.log(kei)
 
         let url = sources[kei].url
@@ -24,11 +24,21 @@ var api = new API();
 
         const el = document.createElement("element");
         el.classList.add("container2");
-        el.textContent = ([i] + " " + url)
+        el.textContent = (parseInt([i] + 1) + " " + url + "")
 
         const holder = document.getElementById("sourcesHold");
 
+        let btn = document.createElement("button")
+        btn.innerHTML = "Delete"
+        btn.onclick = function () {
+            let sourceID = sources[kei].id
+            let userID = jsonUserData.id
+            console.log("Source ID: " + sourceID);
+            console.log("User ID: " + userID);
+        };
+
         holder.appendChild(el);
+        holder.appendChild(btn);
 
     }
 
