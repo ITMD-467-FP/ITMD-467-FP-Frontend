@@ -7,13 +7,21 @@ addSourceForm.addEventListener('submit', event => {
     event.preventDefault();
 
     var url = document.getElementById("add_source_url_field").value;
-    var userId = JSON.parse(sessionStorage.getItem('userData')).id;
+    
+    if(url === "")
+    {
+        window.alert("Empty input, try again")
+        window.location.href = 'addsource.html';
+    }
+    else{
+        var userId = JSON.parse(sessionStorage.getItem('userData')).id;
     
     //Immediately-invoked anonymous async function
-    (async () => {
-        const output = await api.addSource(userId, url);
-        //console.log(output);
-        window.location.href = 'home.html';
+        (async () => {
+            const output = await api.addSource(userId, url);
+            //console.log(output);
+            window.location.href = 'home.html';
     })();
+    }    
 });
 
