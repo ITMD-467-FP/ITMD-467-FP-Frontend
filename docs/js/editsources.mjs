@@ -10,6 +10,26 @@ var api = new API();
     console.log(userData);
     console.log(jsonUserData)
 
+    const sources = await api.getAllSources(jsonUserData.id);
+    console.log(sources);
+    console.log("CheckpointA");
 
+    for (let i = 0; i < Object.keys(sources).length; i ++)
+    {
+        let kei = String(Object.keys(sources)[i])
+        console.log(kei)
+
+        let url = sources[kei].url
+        console.log(url)
+
+        const el = document.createElement("element");
+        el.classList.add("container2");
+        el.textContent = ([i] + " " + url)
+
+        const holder = document.getElementById("sourcesHold");
+
+        holder.appendChild(el);
+
+    }
 
 })();
