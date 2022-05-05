@@ -19,7 +19,7 @@ body{
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #14abc9;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -29,7 +29,7 @@ body{
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s; 
   transition-duration: 0.4s;
 }
 
