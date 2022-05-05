@@ -27,14 +27,20 @@ var api = new API();
         let sourceID = sources[kei].id
         let userID = jsonUserData.id
 
-        btn.onclick = function () {
-            console.log("Source ID: " + sourceID);
-            console.log("User ID: " + userID);
-        };
+
 
         holder.appendChild(el);
         holder.appendChild(btn);
 
+        btn.onclick = function () {
+            console.log("Source ID: " + sourceID);
+            console.log("User ID: " + userID);
+            api.removeSource(sourceID, userID);
+            window.alert(url + " Has been deleted");
+            location.reload();
+        };
+
     }
+
 
 })();
