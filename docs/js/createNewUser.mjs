@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', event => {
     (async () => {
         const output = await api.newUser(email, password, fname, lname);
         console.log(output);
-        window.location.href = 'home.html';
+        window.location.href = 'index.html';
     })();
 });
 
